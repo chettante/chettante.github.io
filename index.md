@@ -7,15 +7,12 @@ profile:
 published: true
 ---
 
-[Gradfolio](https://github.com/jitinnair1/gradfolio){:target="_blank"} is a responsive, dark-mode ready Jekyll theme designed keeping academia in mind. The easiest way to install the theme is to fork it using GitHub. Check the README file for [instructions](https://github.com/jitinnair1/gradfolio#installation){:target="_blank"}.
-
-If you want to use this space to write your biography here, edit the `index.md` file. You can put a picture in, too. Rename your picture to `profile.png` and put it in the `assets/images/` folder.
-
-The social-icons footer can be used to link profiles from GitHub, OrcID and ReasearchGate apart form the usual suspects. You can add your user ID in the `_config.yml` file to link your accounts.
-
-PS: If you liked the theme, do star it on GitHub!
-
-### Also, check out:
-
-- [autoCV](https://github.com/jitinnair1/autocv) - a LaTeX template that builds and deploys the CV using GitHub Actions, so you will always have a ready link for your latest CV
-- [Tail](https://github.com/jitinnair1/tail) - a minimal, quick-setup template for a blog
+I'm a Master's student in Automation and Control Engineering at Politecnico di Milano, driven by a genuine passion for mobile robotics in every form it can take — from field robots to industrial platforms to whatever comes next.
+ 
+I believe in technology for its own sake: the pursuit of pure innovation, pushing what's technically possible, and the satisfaction of solving hard engineering problems just to see them solved well.
+ 
+My goal is to keep building expertise across the full stack of mobile robotics — perception, control, and autonomy — and to work on systems that push the boundaries of what robots can do, wherever that path leads.
+ 
+Off the field, I've been a competitive basketball player since I was 8 — a discipline that taught me as much about teamwork and pressure as any engineering project has.
+ 
+Always open to connecting with people who share the same drive for innovation.
