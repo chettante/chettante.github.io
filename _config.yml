@@ -1,9 +1,9 @@
 ### your site title here
 
-title: Your Name
-description: subtitle | affiliations | motto
+title: Castelli Enrico
+description: MSc Student in Automation & Control Engineering | Politecnico di Milano  
 
-baseurl: /gradfolio #name of GitHub repository
+baseurl: /chettante.github.io #name of GitHub repository
 url: "" #custom url to be used instead of GitHub repository
 email: #
 
@@ -13,16 +13,16 @@ permalink: /blog/:year/:title/
 paginate_path: /blog/page:num/
 
 # Social media links in footer
-linkedin: "#"
-stackoverflow: "#"
-github: "#"
-researchgate: "#"
-orcid: "#"
-quora: "#"
-instagram: "#"
-facebook: "#"
-bluesky: "#"
-substack: "#"
+linkedin: "https://www.linkedin.com/in/enrico-castelli-4a3b16323/"
+#stackoverflow: "#"
+github: "https://github.com/chettante"
+#researchgate: "#"
+#orcid: "#"
+#quora: "#"
+instagram: "https://www.instagram.com/enricocastellii/"
+#facebook: "#"
+#bluesky: "#"
+#substack: "#"
 
 # Markdown
 highlighter: rouge
