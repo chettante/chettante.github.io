@@ -1,13 +1,13 @@
 /* ===== DIVIDER ===== */
 .subtle-divider {
   border: none;
-  border-top: 1px solid #e0e0e0;
-  margin: 2rem 0;
-  opacity: 0.6;
+  border-top: 1px solid #444;
+  margin: 1rem 0 2rem;
+  opacity: 0.8;
 }
 
 /* Dark mode support */
-@media (prefers-color-scheme: dark) {
+html[data-theme="dark"] {
   .subtle-divider {
     border-top-color: #444444;
     opacity: 0.4;
@@ -19,8 +19,8 @@
   display: flex;
   gap: 1rem;
   justify-content: center;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
   flex-wrap: wrap;
 }
 
@@ -55,7 +55,7 @@
 }
 
 /* Dark mode */
-@media (prefers-color-scheme: dark) {
+html[data-theme="dark"] {
   .button {
     border-color: #ddd;
     color: #ddd;
@@ -138,7 +138,7 @@
 }
 
 /* Dark mode */
-@media (prefers-color-scheme: dark) {
+html[data-theme="dark"] {
   .project-item {
     border-color: #444;
   }
@@ -186,7 +186,7 @@
   color: #333;
 }
 
-@media (prefers-color-scheme: dark) {
+html[data-theme="dark"] {
   .back-link {
     color: #999;
   }
@@ -209,7 +209,7 @@
   margin-bottom: 1rem;
 }
 
-@media (prefers-color-scheme: dark) {
+html[data-theme="dark"] {
   .project-detail-subtitle {
     color: #999;
   }
@@ -222,7 +222,7 @@
   font-style: italic;
 }
 
-@media (prefers-color-scheme: dark) {
+html[data-theme="dark"] {
   .project-meta {
     color: #777;
   }
@@ -258,7 +258,7 @@
   /* Styling above */
 }
 
-@media (prefers-color-scheme: dark) {
+html[data-theme="dark"] {
   .project-navigation a {
     border-color: #444;
     color: #ddd;

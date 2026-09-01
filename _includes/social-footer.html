@@ -9,14 +9,14 @@
 
   {%- if site.linkedin -%}
   <a title="{{ _locale_string_follow | replace: '[NAME]', 'LinkedIn' }}" class="social-button linkedin"
-    href="https://www.linkedin.com/in/{{ site.linkedin }}" itemprop="sameAs" target="_blank">
+    href="{{ site.linkedin }}" itemprop="sameAs" target="_blank">
     <i class="fab fa-linkedin"></i>
   </a>
   {%- endif -%}
 
   {%- if site.github -%}
   <a title="{{ _locale_string_follow | replace: '[NAME]', 'GitHub' }}" class="social-button github"
-    href="https://www.github.com/{{ site.github }}" itemprop="sameAs" target="_blank">
+    href="{{ site.github }}" itemprop="sameAs" target="_blank">
     <i class="fab fa-github"></i>
   </a>
   {%- endif -%}
@@ -58,7 +58,7 @@
 
   {%- if site.instagram -%}
   <a title="{{ _locale_string_follow | replace: '[NAME]', 'Instagram' }}" class="social-button instagram"
-    itemprop="sameAs" href="https://www.instagram.com/{{ site.instagram }}" target="_blank">
+    itemprop="sameAs" href="{{ site.instagram }}" target="_blank">
     <i class="fab fa-instagram"></i>
   </a>
   {%- endif -%}

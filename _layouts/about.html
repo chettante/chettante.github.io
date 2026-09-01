@@ -3,16 +3,32 @@ layout: default
 ---
 
 {% if page.profile %}
-    {% if page.profile.image %}
-      <img class="profile profile-centered" width="33.33%" src="{{ page.profile.image | prepend: '/assets/images/' | relative_url }}">
-    {% endif %}
+  {% if page.profile.image %}
+    <img class="profile profile-centered" width="33.33%"
+         src="{{ page.profile.image | prepend: '/assets/images/' | relative_url }}">
+  {% endif %}
 {% endif %}
 
-{{ content }}
+<h3 class="post-description homepage-description">
+  {{ site.description }}
+</h3>
+
+<div class="workplace">
+  <a href="https://www.polimi.it/" target="_blank" rel="noopener noreferrer">
+    Politecnico di Milano
+  </a>
+</div>
+
+<div class="action-buttons">
+  <a href="{{ site.baseurl }}/projects/" class="button button-projects">
+  <i class="fas fa-folder-open"></i> Projects
+  </a>
+
+  <a href="{{ site.baseurl }}/assets/CV.pdf" class="button button-cv" target="_blank">
+  <i class="fas fa-file-lines"></i> CV
+  </a>
+</div>
 
 <hr class="subtle-divider">
 
-<div class="action-buttons">
-  <a href="{{ site.baseurl }}/projects/" class="button button-projects">Projects</a>
-  <a href="{{ site.baseurl }}/assets/CV.pdf" class="button button-cv" target="_blank">CV</a>
-</div>
+{{ content }}

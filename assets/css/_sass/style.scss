@@ -17,9 +17,9 @@ body {
   min-height: 100vh;
   box-sizing: border-box;
 
-  @media (prefers-color-scheme: dark) {
-    background-color: $body-bg-dark;
-    color: $text-color-dark;
+  html[data-theme="dark"] body {
+  background-color: $body-bg-dark;
+  color: $text-color-dark;
   }
 }
 
@@ -48,7 +48,7 @@ a {
   &:hover {
     color: $text-color;
 
-    @media (prefers-color-scheme: dark) {
+    html[data-theme="dark"] {
       color: $text-color-dark;
     }
 
@@ -79,7 +79,7 @@ p a {
 
   }
 
-  @media (prefers-color-scheme: dark) {
+  html[data-theme="dark"] {
     color: $text-color-dark;
   }
 }
@@ -223,4 +223,70 @@ blockquote {
 /* Article list in blog and archive page */
 .article-list {
   margin: 1em 0;
+}
+
+/* ===== HOMEPAGE ===== */
+
+.post-headline a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.post-headline a:hover {
+  color: inherit;
+}
+
+.homepage-description {
+  text-align: center;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.workplace {
+  text-align: center;
+  margin-bottom: 0.75rem;
+  font-size: 0.95em;
+}
+
+.workplace a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.workplace a:hover {
+  text-decoration: underline;
+}
+
+/* ===== THEME TOGGLE ===== */
+
+.theme-toggle {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.25rem;
+  line-height: 1;
+
+  z-index: 1000;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.08);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
 }
