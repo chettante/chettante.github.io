@@ -73,6 +73,10 @@ include:
 exclude:
   - README.md
   - LICENSE.md
+  - vendor
+  - Gemfile
+  - Gemfile.lock
+  - .bundle
 
 plugins:
   - jekyll-seo-tag
