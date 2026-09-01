@@ -55,6 +55,14 @@ collections:
       - project5.md
       - project6.md
 
+# Defaults
+defaults:
+  - scope:
+      path: "_projects"
+      type: "projects"
+    values:
+      layout: "project"
+
 sass:
   sass_dir: /assets/css/_sass
   style: compressed

@@ -1,0 +1,39 @@
+---
+layout: default
+---
+
+<!-- Back to projects link -->
+<a href="{{ site.baseurl }}/projects/" class="back-link">← Back to Projects</a>
+
+<hr class="subtle-divider">
+
+<article class="project-detail">
+  <h1>{{ page.title }}</h1>
+  
+  {% if page.subtitle %}
+    <h2 class="project-detail-subtitle">{{ page.subtitle }}</h2>
+  {% endif %}
+
+  {% if page.date %}
+    <p class="project-meta">{{ page.date | date: "%B %Y" }}</p>
+  {% endif %}
+
+  <!-- Project content -->
+  {{ content }}
+
+  <!-- Navigation to other projects -->
+  <hr class="subtle-divider">
+  <nav class="project-navigation">
+    {% if page.previous %}
+      <a href="{{ page.previous.url | relative_url }}" class="nav-prev">
+        ← {{ page.previous.title }}
+      </a>
+    {% endif %}
+    
+    {% if page.next %}
+      <a href="{{ page.next.url | relative_url }}" class="nav-next">
+        {{ page.next.title }} →
+      </a>
+    {% endif %}
+  </nav>
+</article>

@@ -4,7 +4,7 @@ layout: default
 permalink: /projects/
 published: true
 ---
-
+Here are my projects and research work. Click on any project to read more details.
 
 <div class="ProjectContainer">
 
