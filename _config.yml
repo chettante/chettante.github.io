@@ -1,7 +1,7 @@
 ### your site title here
 
 title: Castelli Enrico
-description: MSc Student in Automation & Control Engineering Polllo
+description: MSc Student in Automation & Control Engineering
 
 baseurl: "" #name of GitHub repository
 url: "" #custom url to be used instead of GitHub repository
@@ -19,7 +19,7 @@ github: "https://github.com/chettante"
 #researchgate: "#"
 #orcid: "#"
 #quora: "#"
-instagram: "https://www.instagram.com/enricocastellii/"
+instagram: "https://www.instagram.com/enricocastellii"
 #facebook: "#"
 #bluesky: "#"
 #substack: "#"

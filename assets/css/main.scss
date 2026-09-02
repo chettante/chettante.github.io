@@ -23,6 +23,7 @@ $on-laptop:        1000px;
 // JN: For now, split @import to anable conditional import of CSS. Also. @import may be deprecated soon so plan
 // for this change
 
+@import 'dark-mode';
 @import 'variables';
 @import 'footer-social';
 @import 'projects';
