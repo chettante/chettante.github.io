@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  
+  <!-- Theme initialization script - must be in head -->
+  <script>
+  (function () {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  })();
+  </script>
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  
+  <header>
+    <h1 class="post-headline">
+      <a href="/">Castelli Enrico</a>
+    </h1>
+  </header>
+  
+
+  <!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>Castelli Enrico | MSc Student in Automation &amp; Control Engineering</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Castelli Enrico" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="MSc Student in Automation &amp; Control Engineering" />
+<meta name="twitter:description" property="og:description" content="MSc Student in Automation &amp; Control Engineering" />
+<link rel="canonical" href="/" />
+<meta property="og:url" content="/" />
+<meta property="og:site_name" content="Castelli Enrico" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Castelli Enrico" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","description":"MSc Student in Automation &amp; Control Engineering","headline":"Castelli Enrico","name":"Castelli Enrico","url":"/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <!-- insert favicons, used https://realfavicongenerator.net/ -->
+<link rel="icon" type="image/svg+xml" href="/assets/favicon/robot.svg">
+<link rel="shortcut icon" href="/assets/favicon/robot.svg">
+
+  <!-- MathJax -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+     processEscapes: true
+    }
+  });
+</script>
+
+
+  <!-- Load fontawesome -->
+  <script type="text/javascript">
+    (function () {
+      var css = document.createElement('link');
+      css.href = 'https://use.fontawesome.com/releases/v6.7.2/css/all.css';
+      css.rel = 'stylesheet';
+      css.type = 'text/css';
+      
+      var showIcons = function () {
+        document.body.classList.add('fontawesome-loaded');
+      };
+      
+      css.onload = showIcons;
+      css.onerror = showIcons;
+      setTimeout(showIcons, 1500);
+      document.getElementsByTagName('head')[0].appendChild(css);
+    })();
+  </script>
+
+</head>
+
+<body>
+  <!-- Theme toggle button -->
+  <button id="theme-toggle" class="theme-toggle" aria-label="Change theme">
+    <span id="theme-icon">🌙</span>
+  </button>
+  
+  <main>
+    <article>
+      
+  
+    <img class="profile profile-centered" width="33.33%" src="/assets/images/profile.png">
+  
+
+
+<h3 class="post-description homepage-description">
+  MSc Student in Automation &amp; Control Engineering
+</h3>
+
+<div class="workplace">
+  <a href="https://www.polimi.it/" target="_blank" rel="noopener noreferrer noopener noreferrer">
+    Politecnico di Milano
+  </a>
+</div>
+
+<div class="action-buttons">
+  <a href="/projects/" class="button button-projects">
+  <i class="fas fa-folder-open"></i> Projects
+  </a>
+
+  <a href="/assets/CV.pdf" class="button button-cv" target="_blank" rel="noopener noreferrer">
+  <i class="fas fa-file-lines"></i> CV
+  </a>
+</div>
+
+<hr class="subtle-divider">
+
+<p>I’m a Master’s student in Automation and Control Engineering at Politecnico di Milano, driven by a genuine passion for mobile robotics in every form it can take — from field robots to industrial platforms to whatever comes next.</p>
+
+<p>I believe in technology for its own sake: the pursuit of pure innovation, pushing what’s technically possible, and the satisfaction of solving hard engineering problems just to see them solved well.</p>
+
+<p>My goal is to keep building expertise across the full stack of mobile robotics — perception, control, and autonomy — and to work on systems that push the boundaries of what robots can do, wherever that path leads.</p>
+
+<p>Off the field, I’ve been a competitive basketball player since I was 8 — a discipline that taught me as much about teamwork and pressure as any engineering project has.</p>
+
+<p>Always open to connecting with people who share the same drive for innovation.</p>
+
+    </article>
+  </main>
+
+  <footer>
+    <p class="copy">
+      <small>© Castelli Enrico 2026</small>
+    </p>
+
+    
+    <div class="rounded-social-buttons">
+<a title="" class="social-button linkedin" href="https://www.linkedin.com/in/enrico-castelli-4a3b16323/" itemprop="sameAs" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-linkedin"></i>
+  </a><a title="" class="social-button github" href="https://github.com/chettante" itemprop="sameAs" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-github"></i>
+  </a><a title="" class="social-button instagram" itemprop="sameAs" href="https://www.instagram.com/enricocastellii" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-instagram"></i>
+  </a>
+</div>
+
+    
+
+  </footer>
+
+  <!-- Google Analytics Tracking code -->
+<script src="https://cdn.jsdelivr.net/npm/ga-lite@1/dist/ga-lite.min.js" async></script>
+<script>
+var galite = galite || {};
+galite.UA = '';
+</script>
+
+  <!-- Theme toggle functionality -->
+  <script>
+    (function () {
+      const toggle = document.getElementById('theme-toggle');
+      const icon = document.getElementById('theme-icon');
+
+      function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+      }
+
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        setTheme(savedTheme);
+      } else {
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(systemDark ? 'dark' : 'light');
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          const currentTheme = document.documentElement.getAttribute('data-theme');
+          setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+      }
+    })();
+  </script>
+
+</body>
+
+</html>
