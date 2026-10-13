@@ -1,0 +1,42 @@
+# Certifications shown on /certifications/ (newest first).
+# To add one: put the PDF in assets/certificates/, a preview image in
+# assets/images/certificates/ (optional) and add an entry below.
+# `id` is the anchor used in links, e.g. /certifications/#toeic
+
+- id: fre2026
+  title: "Certificate of Participation — 23rd Field Robot Event"
+  issuer: "Hochschule Osnabrück & TU Braunschweig"
+  date: "June 2026"
+  kind: "Participation"
+  description: "International competition for autonomous field robots, Bernburg (Germany), 16–18 June 2026, as a member of the Politecnico di Milano AIRLab team."
+  image: /assets/images/certificates/fre2026.jpg
+  links:
+    - label: View certificate
+      url: /assets/certificates/FRE2026_Participation_Enrico_Castelli.pdf
+      icon: fas fa-file-pdf
+    - label: Related project
+      url: /projects/fre2026-task2/
+      icon: fas fa-folder-open
+
+- id: toeic
+  title: "TOEIC Listening & Reading — 980/990"
+  issuer: "ETS Global"
+  date: "July 2025"
+  kind: "Language"
+  description: "Listening 495/495, Reading 485/495 — CEFR level C1. Valid until July 2027. Personal identifiers are hidden in the published copy."
+  image: /assets/images/certificates/toeic.jpg
+  links:
+    - label: View score report
+      url: /assets/certificates/TOEIC_Score_Report_Enrico_Castelli.pdf
+      icon: fas fa-file-pdf
+
+- id: open-badge
+  title: "Open Badge — Control for minimizing the energy consumption of an electric vehicle"
+  issuer: "Politecnico di Milano"
+  date: "June 2025"
+  kind: "Digital badge"
+  description: "Student competition (extracurricular course): a control strategy to improve the energy efficiency of an RC electric vehicle, designed in MATLAB and Simulink."
+  links:
+    - label: View badge
+      url: https://app.myopenbadge.com/receive/uYmBVJveFcg-8ccded9832c3fad9a39f978af2fb360a-JrX9HGWwg-61773739621/GHQBh-cde9bb52c448dfcae6c5f11d5e0a3c8b-Rt1SbI-4/public
+      icon: fas fa-arrow-up-right-from-square

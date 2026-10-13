@@ -435,3 +435,92 @@ figcaption {
   overflow-x: auto;
   border: 1px solid var(--pj-border);
 }
+
+/* ---------- Certifications ---------- */
+.cert-list {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.cert-card {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  background: var(--pj-surface);
+  border: 1px solid var(--pj-border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--pj-shadow);
+  color: var(--pj-text);
+  scroll-margin-top: 1.5rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+  /* highlight the certificate linked from the CV (e.g. /certifications/#toeic) */
+  &:target {
+    border-color: var(--pj-accent);
+    box-shadow: 0 0 0 3px var(--pj-accent-soft), var(--pj-shadow);
+  }
+}
+
+.cert-media {
+  background: var(--pj-surface-alt);
+  border-right: 1px solid var(--pj-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+}
+
+.cert-icon {
+  width: 72px;
+  height: 72px;
+  color: var(--pj-accent-strong);
+}
+
+.cert-body {
+  padding: 1.1rem 1.35rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.cert-title {
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+
+.cert-issuer {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--pj-muted);
+}
+
+.cert-desc {
+  margin: 0.2rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--pj-muted);
+}
+
+.cert-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+
+  .button-pill { font-size: 0.85rem; padding: 0.45rem 1rem; }
+}
+
+@media (max-width: 640px) {
+  .cert-card { grid-template-columns: 1fr; }
+  .cert-media { border-right: none; border-bottom: 1px solid var(--pj-border); aspect-ratio: 16 / 9; min-height: 0; }
+}
