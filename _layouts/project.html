@@ -2,38 +2,65 @@
 layout: default
 ---
 
-<!-- Back to projects link -->
-<a href="{{ site.baseurl }}/projects/" class="back-link">← Back to Projects</a>
-
-<hr class="subtle-divider">
+<a href="{{ '/projects/' | relative_url }}" class="back-link">← Back to Projects</a>
 
 <article class="project-detail">
-  <h1>{{ page.title }}</h1>
-  
-  {% if page.subtitle %}
-    <h2 class="project-detail-subtitle">{{ page.subtitle }}</h2>
+
+  <header class="project-hero">
+    {% if page.badge %}<p class="project-kicker">{{ page.badge }}</p>{% endif %}
+    <h1 class="project-title">{{ page.title }}</h1>
+    {% if page.subtitle %}<p class="project-lede">{{ page.subtitle }}</p>{% endif %}
+
+    {% if page.facts %}
+    <dl class="project-facts">
+      {% for fact in page.facts %}
+      <div><dt>{{ fact.label }}</dt><dd>{{ fact.value }}</dd></div>
+      {% endfor %}
+    </dl>
+    {% endif %}
+
+    {% if page.links %}
+    <div class="project-links">
+      {% for link in page.links %}
+      <a class="button-pill{% if forloop.first %} is-primary{% endif %}" href="{{ link.url | relative_url }}" target="_blank" rel="noopener noreferrer">
+        {% if link.icon %}<i class="{{ link.icon }}"></i>{% endif %} {{ link.label }}
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </header>
+
+  {% if page.hero %}
+  <figure class="project-hero-media">
+    <img src="{{ page.hero | relative_url }}" alt="{{ page.hero_alt | default: page.title }}">
+    {% if page.hero_caption %}<figcaption>{{ page.hero_caption }}</figcaption>{% endif %}
+  </figure>
   {% endif %}
 
-  {% if page.date %}
-    <p class="project-meta">{{ page.date | date: "%B %Y" }}</p>
+  {% if page.tags %}
+  <ul class="tag-list tag-list-lg">
+    {% for tag in page.tags %}<li>{{ tag }}</li>{% endfor %}
+  </ul>
   {% endif %}
 
-  <!-- Project content -->
-  {{ content }}
+  <div class="project-content">
+    {{ content }}
+  </div>
 
-  <!-- Navigation to other projects -->
+  {% if page.team %}
+  <section class="project-team">
+    <h2>Team</h2>
+    <p>{{ page.team | join: " · " }}</p>
+  </section>
+  {% endif %}
+
   <hr class="subtle-divider">
   <nav class="project-navigation">
     {% if page.previous %}
-      <a href="{{ page.previous.url | relative_url }}" class="nav-prev">
-        ← {{ page.previous.title }}
-      </a>
+      <a href="{{ page.previous.url | relative_url }}" class="nav-prev">← {{ page.previous.title }}</a>
     {% endif %}
-    
     {% if page.next %}
-      <a href="{{ page.next.url | relative_url }}" class="nav-next">
-        {{ page.next.title }} →
-      </a>
+      <a href="{{ page.next.url | relative_url }}" class="nav-next">{{ page.next.title }} →</a>
     {% endif %}
   </nav>
 </article>

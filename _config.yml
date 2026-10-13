@@ -4,7 +4,7 @@ title: Castelli Enrico
 description: MSc Student in Automation & Control Engineering
 
 baseurl: "" #name of GitHub repository
-url: "" #custom url to be used instead of GitHub repository
+url: "https://chettante.github.io" #custom url to be used instead of GitHub repository
 email: #
 
 # Pagination
@@ -43,17 +43,11 @@ compress_html:
   startings: []
 
 #collection
+# Projects are listed newest first (by the `date` in each file's front matter)
 collections:
   projects:
     output: true
     permalink: /projects/:name/
-    order:
-      - shortProject.md
-      - longerProjectTitle.md
-      - redirect.md
-      - project4.md
-      - project5.md
-      - project6.md
 
 # Defaults
 defaults:
@@ -77,6 +71,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - .bundle
+  - _site
 
 plugins:
   - jekyll-seo-tag
