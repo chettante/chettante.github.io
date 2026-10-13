@@ -148,11 +148,3 @@ two clear limits, which point to the next steps:
   seen at other angles. Combining several histograms, or widening the stored H–S range, should help.
 - **Mapping missed the 10 cm target.** The Graph SLAM pipeline worked end to end, but needs more
   tuning of the graph noise models in live tests to reach the required precision.
-
-## Full report
-
-<div class="pdf-embed">
-  <object data="{{ '/assets/docs/FRE2026_Task2_Report.pdf' | relative_url }}#view=FitH" type="application/pdf">
-    <p>Your browser cannot display the PDF here. <a href="{{ '/assets/docs/FRE2026_Task2_Report.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">Open the report</a>.</p>
-  </object>
-</div>

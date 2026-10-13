@@ -25,7 +25,7 @@ published: true
     </div>
     {% endif %}
     <div class="project-card-body">
-      {% if project.date %}<p class="project-card-meta">{{ project.date | date: "%B %Y" }}</p>{% endif %}
+      {% if project.period %}<p class="project-card-meta">{{ project.period }}</p>{% elsif project.date %}<p class="project-card-meta">{{ project.date | date: "%B %Y" }}</p>{% endif %}
       <h2 class="project-card-title">{{ project.title }}</h2>
       <p class="project-card-desc">{{ project.description }}</p>
       {% if project.tags %}
