@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  
+  <!-- Theme initialization script - must be in head -->
+  <script>
+  (function () {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  })();
+  </script>
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  
+  <header>
+    <h1 class="post-headline">
+      <a href="/">Castelli Enrico</a>
+    </h1>
+  </header>
+  
+
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>AI-ARMS — Learning Pick-and-Place on the SO-101 Arm | Castelli Enrico</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="AI-ARMS — Learning Pick-and-Place on the SO-101 Arm" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="We printed and assembled an SO-101 arm, teleoperated it leader–follower, and trained an ACT policy with LeRobot to pick and place objects without a human in the loop." />
+<meta name="twitter:description" property="og:description" content="We printed and assembled an SO-101 arm, teleoperated it leader–follower, and trained an ACT policy with LeRobot to pick and place objects without a human in the loop." />
+<link rel="canonical" href="https://chettante.github.io/projects/so101-ai-arms/" />
+<meta property="og:url" content="https://chettante.github.io/projects/so101-ai-arms/" />
+<meta property="og:site_name" content="Castelli Enrico" />
+<meta property="og:image" content="https://chettante.github.io/assets/images/projects/so101/cover.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-05-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-05-06T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://chettante.github.io/assets/images/projects/so101/cover.jpg" />
+<meta name="twitter:title" content="AI-ARMS — Learning Pick-and-Place on the SO-101 Arm" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-05-06T00:00:00+00:00","datePublished":"2026-05-06T00:00:00+00:00","description":"We printed and assembled an SO-101 arm, teleoperated it leader–follower, and trained an ACT policy with LeRobot to pick and place objects without a human in the loop.","headline":"AI-ARMS — Learning Pick-and-Place on the SO-101 Arm","image":"https://chettante.github.io/assets/images/projects/so101/cover.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://chettante.github.io/projects/so101-ai-arms/"},"url":"https://chettante.github.io/projects/so101-ai-arms/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <!-- insert favicons, used https://realfavicongenerator.net/ -->
+<link rel="icon" type="image/svg+xml" href="/assets/favicon/robot.svg">
+<link rel="shortcut icon" href="/assets/favicon/robot.svg">
+
+  <!-- MathJax -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+     processEscapes: true
+    }
+  });
+</script>
+
+
+  <!-- Load fontawesome -->
+  <script type="text/javascript">
+    (function () {
+      var css = document.createElement('link');
+      css.href = 'https://use.fontawesome.com/releases/v6.7.2/css/all.css';
+      css.rel = 'stylesheet';
+      css.type = 'text/css';
+      
+      var showIcons = function () {
+        document.body.classList.add('fontawesome-loaded');
+      };
+      
+      css.onload = showIcons;
+      css.onerror = showIcons;
+      setTimeout(showIcons, 1500);
+      document.getElementsByTagName('head')[0].appendChild(css);
+    })();
+  </script>
+
+</head>
+
+<body>
+  <!-- Theme toggle button -->
+  <button id="theme-toggle" class="theme-toggle" aria-label="Change theme">
+    <span id="theme-icon">🌙</span>
+  </button>
+  
+  <main>
+    <article>
+      <a href="/projects/" class="back-link">← Back to Projects</a>
+
+<article class="project-detail">
+
+  <header class="project-hero">
+    <p class="project-kicker">Student team · AEA</p>
+    <h1 class="project-title">AI-ARMS — Learning Pick-and-Place on the SO-101 Arm</h1>
+    <p class="project-lede">From a 3D-printed open-source arm to an autonomous pick-and-place policy trained by imitation learning</p>
+
+    
+    <dl class="project-facts">
+      
+      <div>
+<dt>Team</dt>
+<dd>AI-ARMS, Automation Engineering Association</dd>
+</div>
+      
+      <div>
+<dt>Period</dt>
+<dd>Oct 2025 – present</dd>
+</div>
+      
+      <div>
+<dt>Platform</dt>
+<dd>SO-101 leader + follower arms</dd>
+</div>
+      
+      <div>
+<dt>My focus</dt>
+<dd>Training the autonomous pick-and-place policy</dd>
+</div>
+      
+    </dl>
+    
+
+    
+    <div class="project-links">
+      
+      <a class="button-pill is-primary" href="https://www.aeapolimi.it/progetti/armsAI" target="_blank" rel="noopener noreferrer noopener noreferrer">
+        <i class="fas fa-arrow-up-right-from-square"></i> Project page (AEA)
+      </a>
+      
+      <a class="button-pill" href="https://github.com/AEA-LeRobot/AEA-lerobot-commands" target="_blank" rel="noopener noreferrer noopener noreferrer">
+        <i class="fab fa-github"></i> Commands guide
+      </a>
+      
+      <a class="button-pill" href="https://huggingface.co/SOARM1" target="_blank" rel="noopener noreferrer noopener noreferrer">
+        <i class="fas fa-database"></i> Datasets &amp; models
+      </a>
+      
+    </div>
+    
+  </header>
+
+  
+  <figure class="project-hero-media">
+    <img src="/assets/images/projects/so101/hero.jpg" alt="SO-101 follower arm on the lab bench next to an orange cube and a laptop showing the camera feeds">
+    <figcaption>The SO-101 follower arm on the bench, with the camera feeds on the laptop.</figcaption>
+  </figure>
+  
+
+  
+  <ul class="tag-list tag-list-lg">
+    <li>LeRobot</li>
+<li>Imitation learning</li>
+<li>ACT policy</li>
+<li>Teleoperation</li>
+<li>Hugging Face</li>
+<li>3D printing</li>
+  </ul>
+  
+
+  <div class="project-content">
+    <p><strong>AI-ARMS</strong> is a team of the Automation Engineering Association (AEA) at Politecnico di Milano working
+on low-cost robot manipulation. We built an <strong>SO-101</strong> arm from scratch, made it work under
+<strong>leader–follower teleoperation</strong>, and then used the demonstrations to teach it a task on its own.</p>
+
+<p>My part was the last step: training an <strong>imitation-learning policy</strong> on the recorded demonstrations and
+running it on the real arm, so that it performs <strong>pick-and-place autonomously, with no teleoperation</strong>.</p>
+
+<div class="stat-strip">
+  <div>
+<strong>6</strong><span>servo motors per arm</span>
+</div>
+  <div>
+<strong>50</strong><span>demonstration episodes</span>
+</div>
+  <div>
+<strong>~19.8k</strong><span>frames recorded at 30 fps</span>
+</div>
+  <div>
+<strong>2</strong><span>RGB cameras, 640×480</span>
+</div>
+</div>
+
+<h2 id="the-so-101-arm">The SO-101 arm</h2>
+
+<div class="split">
+  <div>
+    <p>The SO-101 is an <strong>open-source, 3D-printable robot arm</strong> designed by TheRobotStudio together with
+Hugging Face. It is the successor of the SO-100, with easier assembly and better wiring, and it has become
+one of the most popular platforms for learning-based manipulation because:</p>
+
+    <ul>
+      <li>every structural part is <strong>printed in PLA</strong>, and the design files are released under Apache-2.0;</li>
+      <li>the parts for a full leader + follower pair cost <strong>a few hundred euros</strong>;</li>
+      <li>it is natively supported by <strong>LeRobot</strong>, Hugging Face’s library for real-world robot learning.</li>
+    </ul>
+
+    <p>A setup has <strong>two arms</strong>. The <strong>follower</strong> does the work; the <strong>leader</strong>, with a handle and trigger,
+is moved by hand to drive the follower. Both use Feetech STS3215 serial-bus servos, with different gear
+ratios on the leader to make it easy to back-drive.</p>
+  </div>
+  <figure class="figure">
+  <img src="/assets/images/projects/so101/arm-closeup.jpg" alt="Close-up of the assembled SO-101 arm with its servo motors" loading="lazy">
+  <figcaption>Our assembled arm: 3D-printed links and serial-bus servos.</figcaption>
+</figure>
+</div>
+
+<h2 id="build-and-teleoperation">Build and teleoperation</h2>
+
+<div class="split split-reverse">
+  <div>
+    <p>We <strong>printed and assembled both arms</strong>, then brought them up with LeRobot’s command-line tools:</p>
+
+    <ol>
+      <li>
+<strong>Motor setup</strong> — assign an ID to every servo on the bus.</li>
+      <li>
+<strong>Calibration</strong> — record the joint ranges of each arm, so leader and follower agree on every angle.</li>
+      <li>
+<strong>Teleoperation</strong> — the follower mirrors the leader in real time, while the two cameras stream to the PC.</li>
+    </ol>
+
+    <p>Teleoperation is not only a demo: it is how the robot <strong>learns</strong>. Every movement we make with the
+leader can be recorded as an example of the task.</p>
+  </div>
+  <figure class="figure">
+  <img src="/assets/images/projects/so101/leader-arm.jpg" alt="One of the assembled SO-101 arms on the lab bench" loading="lazy">
+  <figcaption>One of our arms on the bench during bring-up and calibration.</figcaption>
+</figure>
+</div>
+
+<h2 id="teaching-the-robot-by-demonstration">Teaching the robot by demonstration</h2>
+
+<p>The goal was to remove the human: the robot should see the scene and pick up and place the object by
+itself, following the LeRobot imitation-learning workflow.</p>
+
+<ol class="steps">
+  <li>
+<h3>Record demonstrations</h3>
+<p>The task is performed many times through teleoperation. Each episode stores the two camera streams, the six joint positions and the actions sent to the follower, at 30 fps.</p>
+</li>
+  <li>
+<h3>Build the dataset</h3>
+<p>Episodes are uploaded to the Hugging Face Hub and merged into one training set: 50 episodes and about 19,800 frames over 5 task variants.</p>
+</li>
+  <li>
+<h3>Check the data</h3>
+<p>Before training, episodes are replayed with the LeRobot visualizer to catch bad recordings, wrong motions or desynchronized cameras.</p>
+</li>
+  <li>
+<h3>Train an ACT policy</h3>
+<p>The policy is trained on a GPU in Google Colab and pushed back to the Hub, so the same model can be loaded on any machine.</p>
+</li>
+  <li>
+<h3>Run it on the robot</h3>
+<p>The trained policy drives the follower directly from the camera images and joint states, with no leader arm connected.</p>
+</li>
+</ol>
+
+<div class="callout">
+  <p><strong>Why ACT.</strong> <em>Action Chunking with Transformers</em> is the imitation-learning policy LeRobot suggests
+starting with. A ResNet backbone reads the camera images, a transformer combines them with the joint
+positions, and the network predicts a <strong>chunk of future actions</strong> at once instead of a single step. This
+makes the motion smoother and more robust, and good results are typically reached with about 50
+demonstrations — the size of our dataset.</p>
+</div>
+
+<p>A training run on the merged dataset, as launched in Colab:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python src/lerobot/scripts/lerobot_train.py <span class="se">\</span>
+  <span class="nt">--dataset</span>.repo_id<span class="o">=</span>SOARM1/SOARM101_merged <span class="se">\</span>
+  <span class="nt">--policy</span>.type<span class="o">=</span>act <span class="se">\</span>
+  <span class="nt">--policy</span>.device<span class="o">=</span>cuda <span class="se">\</span>
+  <span class="nt">--output_dir</span><span class="o">=</span>outputs/train/hf_act_record0 <span class="se">\</span>
+  <span class="nt">--policy</span>.repo_id<span class="o">=</span>SOARM1/hf_act_recordpolicy0
+</code></pre></div></div>
+
+<p>In the team we also tuned the chunking, for example predicting 50 steps and executing 10 before
+re-planning, which gave smoother movements on the real arm.</p>
+
+<h2 id="pick-and-place-in-the-workcell">Pick-and-place in the workcell</h2>
+
+<div class="split">
+  <figure class="figure video-figure">
+  <video controls="" muted="" loop="" playsinline="" preload="metadata" poster="/assets/images/projects/so101/pick-place-poster.jpg">
+    <source src="/assets/images/projects/so101/pick-place.mp4" type="video/mp4"></source>
+  </video>
+  <figcaption>Pick-and-place run in the workcell (video at 2× speed).</figcaption>
+</figure>
+  <div>
+    <p>The workcell is deliberately simple: a cardboard enclosure with tape marking the work area, an
+object to grasp and a box to drop it into. Keeping the background and lighting <strong>consistent between
+recording and deployment</strong> matters, because the policy learns directly from pixels.</p>
+
+    <p>Two practical points of this workflow:</p>
+
+    <ul>
+      <li>
+<strong>The setup is part of the model.</strong> Cameras, lighting and object positions should stay the same
+between recording and deployment.</li>
+      <li>
+<strong>Everything is reproducible.</strong> Datasets and trained policies live on the Hugging Face Hub, so anyone
+in the team can retrain or run a model on their own laptop.</li>
+    </ul>
+  </div>
+</div>
+
+<h2 id="resources">Resources</h2>
+
+<ul>
+  <li>
+<a href="https://www.aeapolimi.it/progetti/armsAI" target="_blank" rel="noopener noreferrer">AI-ARMS project page</a> — Automation Engineering Association, PoliMi</li>
+  <li>
+<a href="https://github.com/AEA-LeRobot/AEA-lerobot-commands" target="_blank" rel="noopener noreferrer">Team commands guide</a> — setup, calibration, recording, training and deployment</li>
+  <li>
+<a href="https://huggingface.co/SOARM1" target="_blank" rel="noopener noreferrer">Datasets and trained policies</a> on Hugging Face</li>
+  <li>
+<a href="https://github.com/huggingface/lerobot" target="_blank" rel="noopener noreferrer">LeRobot</a> and the <a href="https://github.com/TheRobotStudio/SO-ARM100" target="_blank" rel="noopener noreferrer">SO-101 hardware repository</a>
+</li>
+</ul>
+
+  </div>
+
+  
+
+  <hr class="subtle-divider">
+  <nav class="project-navigation">
+    
+    
+      <a href="/projects/fre2026-task2/" class="nav-next">Field Robot Event 2026 — Plant Health Detection →</a>
+    
+  </nav>
+</article>
+
+    </article>
+  </main>
+
+  <footer>
+    <p class="copy">
+      <small>© Castelli Enrico 2026</small>
+    </p>
+
+    
+    <div class="rounded-social-buttons">
+<a title="" class="social-button linkedin" href="https://www.linkedin.com/in/enrico-castelli-4a3b16323/" itemprop="sameAs" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-linkedin"></i>
+  </a><a title="" class="social-button github" href="https://github.com/chettante" itemprop="sameAs" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-github"></i>
+  </a><a title="" class="social-button instagram" itemprop="sameAs" href="https://www.instagram.com/enricocastellii" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-instagram"></i>
+  </a>
+</div>
+
+    
+
+  </footer>
+
+   
+   <script data-goatcounter="https://chettante.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+   
+
+  <!-- Theme toggle functionality -->
+  <script>
+    (function () {
+      const toggle = document.getElementById('theme-toggle');
+      const icon = document.getElementById('theme-icon');
+
+      function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+      }
+
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        setTheme(savedTheme);
+      } else {
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(systemDark ? 'dark' : 'light');
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          const currentTheme = document.documentElement.getAttribute('data-theme');
+          setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+      }
+    })();
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  
+  <!-- Theme initialization script - must be in head -->
+  <script>
+  (function () {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  })();
+  </script>
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  
+  <header>
+    <h1 class="post-headline">
+      <a href="/">Castelli Enrico</a>
+    </h1>
+  </header>
+  
+
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>Drone Chase — Finding and Tracking a Flying Target | Castelli Enrico</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Drone Chase — Finding and Tracking a Flying Target" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A follower quadrotor finds, tracks and re-acquires a moving leader drone from a simulated camera: FOV model, four-state mission logic and a P + feedforward controller on telekyb3/GenoM3 and Gazebo." />
+<meta name="twitter:description" property="og:description" content="A follower quadrotor finds, tracks and re-acquires a moving leader drone from a simulated camera: FOV model, four-state mission logic and a P + feedforward controller on telekyb3/GenoM3 and Gazebo." />
+<link rel="canonical" href="https://chettante.github.io/projects/drone-chase/" />
+<meta property="og:url" content="https://chettante.github.io/projects/drone-chase/" />
+<meta property="og:site_name" content="Castelli Enrico" />
+<meta property="og:image" content="https://chettante.github.io/assets/images/projects/drone-chase/cover.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-10-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-10-14T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://chettante.github.io/assets/images/projects/drone-chase/cover.jpg" />
+<meta name="twitter:title" content="Drone Chase — Finding and Tracking a Flying Target" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-10-14T00:00:00+00:00","datePublished":"2026-10-14T00:00:00+00:00","description":"A follower quadrotor finds, tracks and re-acquires a moving leader drone from a simulated camera: FOV model, four-state mission logic and a P + feedforward controller on telekyb3/GenoM3 and Gazebo.","headline":"Drone Chase — Finding and Tracking a Flying Target","image":"https://chettante.github.io/assets/images/projects/drone-chase/cover.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://chettante.github.io/projects/drone-chase/"},"url":"https://chettante.github.io/projects/drone-chase/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <!-- insert favicons, used https://realfavicongenerator.net/ -->
+<link rel="icon" type="image/svg+xml" href="/assets/favicon/robot.svg">
+<link rel="shortcut icon" href="/assets/favicon/robot.svg">
+
+  <!-- MathJax -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+     processEscapes: true
+    }
+  });
+</script>
+
+
+  <!-- Load fontawesome -->
+  <script type="text/javascript">
+    (function () {
+      var css = document.createElement('link');
+      css.href = 'https://use.fontawesome.com/releases/v6.7.2/css/all.css';
+      css.rel = 'stylesheet';
+      css.type = 'text/css';
+      
+      var showIcons = function () {
+        document.body.classList.add('fontawesome-loaded');
+      };
+      
+      css.onload = showIcons;
+      css.onerror = showIcons;
+      setTimeout(showIcons, 1500);
+      document.getElementsByTagName('head')[0].appendChild(css);
+    })();
+  </script>
+
+</head>
+
+<body>
+  <!-- Theme toggle button -->
+  <button id="theme-toggle" class="theme-toggle" aria-label="Change theme">
+    <span id="theme-icon">🌙</span>
+  </button>
+  
+  <main>
+    <article>
+      <a href="/projects/" class="back-link">← Back to Projects</a>
+
+<article class="project-detail">
+
+  <header class="project-hero">
+    <p class="project-kicker">Aerial robotics · Team project</p>
+    <h1 class="project-title">Drone Chase — Finding and Tracking a Flying Target</h1>
+    <p class="project-lede">A follower quadrotor that finds, follows and re-acquires a leader drone using only what its camera can see, in a GenoM3 and Gazebo simulation</p>
+
+    
+    <dl class="project-facts">
+      
+      <div>
+<dt>Framework</dt>
+<dd>telekyb3 / GenoM3 (LAAS-CNRS)</dd>
+</div>
+      
+      <div>
+<dt>Simulator</dt>
+<dd>Gazebo, two quadrotors</dd>
+</div>
+      
+      <div>
+<dt>Period</dt>
+<dd>Aug – Oct 2026</dd>
+</div>
+      
+      <div>
+<dt>My focus</dt>
+<dd>Camera model, tracking and search</dd>
+</div>
+      
+    </dl>
+    
+
+    
+    <div class="project-links">
+      
+      <a class="button-pill is-primary" href="https://github.com/chettante/tk3lab-ws/tree/chetto/src/final_project" target="_blank" rel="noopener noreferrer noopener noreferrer">
+        <i class="fab fa-github"></i> Code on GitHub
+      </a>
+      
+      <a class="button-pill" href="https://git.openrobots.org/projects/telekyb3" target="_blank" rel="noopener noreferrer noopener noreferrer">
+        <i class="fas fa-arrow-up-right-from-square"></i> telekyb3
+      </a>
+      
+    </div>
+    
+  </header>
+
+  
+  <figure class="project-hero-media">
+    <img src="/assets/images/projects/drone-chase/hero.jpg" alt="Illustration of the follower drone, its camera field of view and the leader drone flying a figure-8">
+    <figcaption>The follower (green) keeps the leader (orange) inside its camera's field of view while the leader flies a figure-8. Geometry from the project code; the field of view is drawn shorter than the real 10 m.</figcaption>
+  </figure>
+  
+
+  
+  <ul class="tag-list tag-list-lg">
+    <li>Python</li>
+<li>GenoM3 / telekyb3</li>
+<li>Gazebo</li>
+<li>State machine</li>
+<li>Visual tracking</li>
+<li>Trajectory planning</li>
+  </ul>
+  
+
+  <div class="project-content">
+    <p>Two quadrotors share the sky. The <strong>leader</strong> flies its own trajectory; the <strong>follower</strong> has to find it,
+stay close behind it and, when it slips out of view, find it again. The catch: the follower may only use
+what an on-board <strong>camera</strong> would see. Everything runs in simulation, on the same flight software used on
+real aerial robots: Gazebo for the physics, the telekyb3 flight stack (GenoM3 components from LAAS-CNRS)
+for each drone, and our Python mission code on top.</p>
+
+<p>I designed and wrote the follower’s perception and control: the camera model, the estimation of the
+leader’s velocity, the tracking controller, the search strategy and their integration in the state machine.</p>
+
+<div class="stat-strip">
+  <div>
+<strong>4</strong><span>mission states</span>
+</div>
+  <div>
+<strong>20 Hz</strong><span>mission control loop</span>
+</div>
+  <div>
+<strong>87° × 58°</strong><span>camera field of view, 10 m range</span>
+</div>
+  <div>
+<strong>3 m</strong><span>follow distance</span>
+</div>
+</div>
+
+<h2 id="how-it-is-built">How it is built</h2>
+
+<figure class="figure figure-wide">
+  <a href="/assets/images/projects/drone-chase/architecture.png" target="_blank" rel="noopener noreferrer"><img src="/assets/images/projects/drone-chase/architecture.png" alt="Architecture: Python client, GenoM3 components for leader and follower, Gazebo simulator" loading="lazy"></a>
+  <figcaption>Our Python client drives two identical GenoM3 flight stacks, one per drone, connected to Gazebo.</figcaption>
+</figure>
+
+<p>Each drone runs its own copy of the <strong>telekyb3</strong> stack. <code class="language-plaintext highlighter-rouge">rotorcraft</code> talks to the motors and the IMU,
+<code class="language-plaintext highlighter-rouge">pom</code> is a Kalman filter that fuses the IMU with motion-capture poses, <code class="language-plaintext highlighter-rouge">nhfc</code> is the flight controller and
+<code class="language-plaintext highlighter-rouge">maneuver</code> turns our commands into smooth, dynamically feasible references for it. The launcher starts two
+instances of every component (<code class="language-plaintext highlighter-rouge">_1</code> for the leader, <code class="language-plaintext highlighter-rouge">_2</code> for the follower) and one shared <code class="language-plaintext highlighter-rouge">optitrack</code>.</p>
+
+<p>On top of them, <code class="language-plaintext highlighter-rouge">main_statemachine.py</code> runs a <strong>20 Hz loop</strong> through <code class="language-plaintext highlighter-rouge">python-genomix</code>: it moves the leader
+along its trajectory, simulates the follower’s camera, steps the state machine and sends the resulting
+velocity command to the follower’s <code class="language-plaintext highlighter-rouge">maneuver</code>. All parameters live in a single <code class="language-plaintext highlighter-rouge">config.py</code>, and a small
+script copies the field of view into the Gazebo camera sensor, so the image rendered by Gazebo and the
+camera model in the code always match.</p>
+
+<h2 id="a-camera-without-image-processing">A camera without image processing</h2>
+
+<figure class="figure figure-wide">
+  <a href="/assets/images/projects/drone-chase/camera-model.png" target="_blank" rel="noopener noreferrer"><img src="/assets/images/projects/drone-chase/camera-model.png" alt="Camera field of view: top view with 87 degrees horizontal, side view with 58 degrees vertical and the effect of tilting" loading="lazy"></a>
+  <figcaption>The follower only gets the leader's position while it is inside this pyramid.</figcaption>
+</figure>
+
+<p>The leader’s position comes from motion capture, but the follower is allowed to use it <strong>only while the
+leader is inside the camera’s field of view</strong>: a pyramid of 87° × 58°, from 0.1 to 10 m, mounted 45° off
+the drone’s first arm. This turns perfect data into the realistic problem: the leader can be lost, and the
+follower has to keep it in the picture.</p>
+
+<p>The camera is <strong>rigid</strong>, as in Gazebo. To accelerate, a quadrotor has to tilt, and every degree of tilt
+moves the leader by one degree in the image. So the tracking acceleration is a <em>tilt budget</em>:
+a = g · tan(10°) ≈ 1.7 m/s².</p>
+
+<div class="callout">
+  <p><strong>Estimating the leader’s velocity.</strong> The camera only gives positions. The velocity comes from
+differentiating the leader’s position between frames, computed in the world frame (the camera frame rotates
+with the drone), restarted every time the leader re-enters the image and frozen when motion capture has
+not refreshed yet, which would otherwise make the estimate jump between 0 and twice the real value.</p>
+</div>
+
+<figure class="figure figure-wide">
+  <a href="/assets/images/projects/drone-chase/velocity-estimate.png" target="_blank" rel="noopener noreferrer"><img src="/assets/images/projects/drone-chase/velocity-estimate.png" alt="Leader velocity estimated from the camera compared with the ground truth on the three axes" loading="lazy"></a>
+  <figcaption>Validation run with a slow leader (below 1 m/s): the estimate follows the ground truth with a median error of about 0.01 m/s.</figcaption>
+</figure>
+
+<h2 id="four-states">Four states</h2>
+
+<figure class="figure figure-wide">
+  <a href="/assets/images/projects/drone-chase/state-machine.png" target="_blank" rel="noopener noreferrer"><img src="/assets/images/projects/drone-chase/state-machine.png" alt="State machine with IDLE, EXPLORING, TRACKING and SEARCHING and their transitions" loading="lazy"></a>
+  <figcaption>The mission logic. Every state checks the camera at each tick.</figcaption>
+</figure>
+
+<ul>
+  <li>
+<strong>IDLE</strong> — hover and look. If the leader appears, start tracking; after 5 s without it, explore.</li>
+  <li>
+<strong>EXPLORING</strong> — one lap on a ring around the search volume, with the camera always facing its centre.</li>
+  <li>
+<strong>TRACKING</strong> — follow the leader and keep it centred. If it leaves the image, keep following its
+extrapolated position for up to 2 s before giving up.</li>
+  <li>
+<strong>SEARCHING</strong> — fly to where the leader should be now, then scan the area; back to tracking as soon as
+it is seen again.</li>
+</ul>
+
+<p>Each state is a small class whose <code class="language-plaintext highlighter-rouge">update()</code> returns the next state, so the transitions stay explicit and
+every state can be developed and tested on its own.</p>
+
+<h2 id="tracking-p--feedforward">Tracking: P + feedforward</h2>
+
+<figure class="figure figure-wide">
+  <a href="/assets/images/projects/drone-chase/tracking-law.png" target="_blank" rel="noopener noreferrer"><img src="/assets/images/projects/drone-chase/tracking-law.png" alt="Tracking control law: geometry and the five steps of one control cycle" loading="lazy"></a>
+  <figcaption>One control step of the tracking controller.</figcaption>
+</figure>
+
+<p>The follower aims for a point <strong>3 m behind the leader</strong> along the line that joins them, at the leader’s
+altitude. The command is the leader’s estimated velocity (feedforward) plus a proportional correction
+toward that point, and the yaw keeps the leader on the camera axis using both the angular error and the
+rate at which the bearing is turning.</p>
+
+<p>Two rules keep the leader in the picture. Near the side edges of the image the drone <strong>rotates first</strong> and
+corrects its position later; near the top or bottom edge it <strong>stops approaching</strong>, because getting closer
+increases the vertical angle. A rate limiter enforces the tilt budget, and when tracking starts the limiter
+begins from the follower’s measured velocity instead of zero (<em>bumpless transfer</em>), so switching state
+never makes the drone jerk.</p>
+
+<h2 id="losing-the-leader-and-finding-it-again">Losing the leader, and finding it again</h2>
+
+<figure class="figure figure-wide">
+  <a href="/assets/images/projects/drone-chase/search-explore.png" target="_blank" rel="noopener noreferrer"><img src="/assets/images/projects/drone-chase/search-explore.png" alt="Search after losing the leader and exploration of the volume when no leader has been seen" loading="lazy"></a>
+  <figcaption>Searching starts from the last estimate of the leader; exploring covers the volume when there is none.</figcaption>
+</figure>
+
+<p><strong>Searching</strong> starts where the leader should be by now: its last position plus its last velocity times
+the time since it was lost. In a single smooth move the follower turns to put that point at the centre of
+the image, gets within 3 m of it and matches its altitude. If the leader is still not in view, a fixed scan
+follows: hold, fly home, climb while spinning, descend while spinning.</p>
+
+<p><strong>Exploring</strong> is for when the leader has not been seen at all: a straight connection to a ring that
+encloses the 20 × 20 m volume, then one lap at 10 m/s, rising from 6 to 14 m and back, with the camera
+pointed at the centre. Point-to-point moves use a quintic (smoothstep) time law sized on the speed and
+acceleration limits, so they start and stop with zero velocity and acceleration.</p>
+
+<h2 id="the-leader">The leader</h2>
+
+<figure class="figure figure-wide">
+  <a href="/assets/images/projects/drone-chase/leader-figure8.png" target="_blank" rel="noopener noreferrer"><img src="/assets/images/projects/drone-chase/leader-figure8.png" alt="The leader's figure-8 reference trajectory in 3D, top view and altitude" loading="lazy"></a>
+  <figcaption>The figure-8 reference flown by the leader.</figcaption>
+</figure>
+
+<p>The leader flies a <strong>figure-8</strong> that climbs from 5 to 10 m and back. It is re-parametrised by arc length,
+so the speed stays constant along the curves after a smooth start, and the whole trajectory is computed
+once before the loop and then streamed to <code class="language-plaintext highlighter-rouge">maneuver</code> one sample per tick. For harder tests the leader can
+instead fly through <strong>100 random waypoints</strong> spread over a 200 × 200 m area, at speeds of tens of metres
+per second.</p>
+
+<h2 id="what-i-learned">What I learned</h2>
+
+<ul>
+  <li>
+<strong>The planner has limits, and they must be respected upstream.</strong> Rate-limiting every command and never
+sending a non-finite value avoids the planner rejecting or crashing on a sudden change.</li>
+  <li>
+<strong>Switching states is part of the controller.</strong> Bumpless transfer and a short grace period stop the
+drone from jerking at every transition and from giving up on a leader that is only briefly out of view.</li>
+  <li>
+<strong>Perception constraints shape the control.</strong> With a rigid camera, the field of view decides how hard the
+follower may accelerate and in which order it should correct yaw and position.</li>
+  <li>
+<strong>One configuration file for everything.</strong> Keeping all gains, limits and the camera geometry in one
+place, and generating the Gazebo camera from it, avoids mismatches between the code and the simulator.</li>
+</ul>
+
+  </div>
+
+  
+  <section class="project-team">
+    <h2>Team</h2>
+    <p>Enrico Castelli · Giuliano Livi · Matteo Giovanelli</p>
+  </section>
+  
+
+  <hr class="subtle-divider">
+  <nav class="project-navigation">
+    
+      <a href="/projects/fre2026-task2/" class="nav-prev">← Field Robot Event 2026 — Plant Health Detection</a>
+    
+    
+  </nav>
+</article>
+
+    </article>
+  </main>
+
+  <footer>
+    <p class="copy">
+      <small>© Castelli Enrico 2026</small>
+    </p>
+
+    
+    <div class="rounded-social-buttons">
+<a title="" class="social-button linkedin" href="https://www.linkedin.com/in/enrico-castelli-4a3b16323/" itemprop="sameAs" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-linkedin"></i>
+  </a><a title="" class="social-button github" href="https://github.com/chettante" itemprop="sameAs" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-github"></i>
+  </a><a title="" class="social-button instagram" itemprop="sameAs" href="https://www.instagram.com/enricocastellii" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-instagram"></i>
+  </a>
+</div>
+
+    
+
+  </footer>
+
+   
+   <script data-goatcounter="https://chettante.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+   
+
+  <!-- Theme toggle functionality -->
+  <script>
+    (function () {
+      const toggle = document.getElementById('theme-toggle');
+      const icon = document.getElementById('theme-icon');
+
+      function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+      }
+
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        setTheme(savedTheme);
+      } else {
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(systemDark ? 'dark' : 'light');
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          const currentTheme = document.documentElement.getAttribute('data-theme');
+          setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+      }
+    })();
+  </script>
+
+</body>
+
+</html>

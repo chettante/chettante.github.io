@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  
+  <!-- Theme initialization script - must be in head -->
+  <script>
+  (function () {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  })();
+  </script>
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  
+  <header>
+    <h1 class="post-headline">
+      <a href="/">Castelli Enrico</a>
+    </h1>
+  </header>
+  
+
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>Field Robot Event 2026 — Plant Health Detection | Castelli Enrico</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Field Robot Event 2026 — Plant Health Detection" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Autonomous detection and mapping of diseased plants in a maize field: HSV histogram back-projection, 3D validation and semantic Graph SLAM in ROS 2." />
+<meta name="twitter:description" property="og:description" content="Autonomous detection and mapping of diseased plants in a maize field: HSV histogram back-projection, 3D validation and semantic Graph SLAM in ROS 2." />
+<link rel="canonical" href="https://chettante.github.io/projects/fre2026-task2/" />
+<meta property="og:url" content="https://chettante.github.io/projects/fre2026-task2/" />
+<meta property="og:site_name" content="Castelli Enrico" />
+<meta property="og:image" content="https://chettante.github.io/assets/images/projects/fre2026/cover.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-06-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-06-18T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://chettante.github.io/assets/images/projects/fre2026/cover.jpg" />
+<meta name="twitter:title" content="Field Robot Event 2026 — Plant Health Detection" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-06-18T00:00:00+00:00","datePublished":"2026-06-18T00:00:00+00:00","description":"Autonomous detection and mapping of diseased plants in a maize field: HSV histogram back-projection, 3D validation and semantic Graph SLAM in ROS 2.","headline":"Field Robot Event 2026 — Plant Health Detection","image":"https://chettante.github.io/assets/images/projects/fre2026/cover.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://chettante.github.io/projects/fre2026-task2/"},"url":"https://chettante.github.io/projects/fre2026-task2/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <!-- insert favicons, used https://realfavicongenerator.net/ -->
+<link rel="icon" type="image/svg+xml" href="/assets/favicon/robot.svg">
+<link rel="shortcut icon" href="/assets/favicon/robot.svg">
+
+  <!-- MathJax -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+     processEscapes: true
+    }
+  });
+</script>
+
+
+  <!-- Load fontawesome -->
+  <script type="text/javascript">
+    (function () {
+      var css = document.createElement('link');
+      css.href = 'https://use.fontawesome.com/releases/v6.7.2/css/all.css';
+      css.rel = 'stylesheet';
+      css.type = 'text/css';
+      
+      var showIcons = function () {
+        document.body.classList.add('fontawesome-loaded');
+      };
+      
+      css.onload = showIcons;
+      css.onerror = showIcons;
+      setTimeout(showIcons, 1500);
+      document.getElementsByTagName('head')[0].appendChild(css);
+    })();
+  </script>
+
+</head>
+
+<body>
+  <!-- Theme toggle button -->
+  <button id="theme-toggle" class="theme-toggle" aria-label="Change theme">
+    <span id="theme-icon">🌙</span>
+  </button>
+  
+  <main>
+    <article>
+      <a href="/projects/" class="back-link">← Back to Projects</a>
+
+<article class="project-detail">
+
+  <header class="project-hero">
+    <p class="project-kicker">Competition · AIRLab</p>
+    <h1 class="project-title">Field Robot Event 2026 — Plant Health Detection</h1>
+    <p class="project-lede">Marker detection and semantic Graph SLAM for an autonomous robot in a curved maize field</p>
+
+    
+    <dl class="project-facts">
+      
+      <div>
+<dt>Event</dt>
+<dd>23rd Field Robot Event</dd>
+</div>
+      
+      <div>
+<dt>Where &amp; when</dt>
+<dd>Bernburg (DE), 16–18 June 2026</dd>
+</div>
+      
+      <div>
+<dt>Team</dt>
+<dd>AIRLab, Politecnico di Milano</dd>
+</div>
+      
+      <div>
+<dt>My focus</dt>
+<dd>Marker detection &amp; localization</dd>
+</div>
+      
+    </dl>
+    
+
+    
+    <div class="project-links">
+      
+      <a class="button-pill is-primary" href="/assets/docs/FRE2026_Task2_Report.pdf" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-file-pdf"></i> Read the report
+      </a>
+      
+      <a class="button-pill" href="https://www.fieldrobotevent.eu/" target="_blank" rel="noopener noreferrer noopener noreferrer">
+        <i class="fas fa-arrow-up-right-from-square"></i> Field Robot Event
+      </a>
+      
+    </div>
+    
+  </header>
+
+  
+  <figure class="project-hero-media">
+    <img src="/assets/images/projects/fre2026/hero.jpg" alt="The Grasslammer robot driving between maize rows">
+    <figcaption>Grasslammer starting a run between the maize rows, with the LED matrix mounted on the back.</figcaption>
+  </figure>
+  
+
+  
+  <ul class="tag-list tag-list-lg">
+    <li>ROS 2</li>
+<li>OpenCV</li>
+<li>Graph SLAM</li>
+<li>GTSAM / iSAM2</li>
+<li>Kalman filter</li>
+<li>OAK-D depth</li>
+  </ul>
+  
+
+  <div class="project-content">
+    <p>The <a href="https://www.fieldrobotevent.eu/" target="_blank" rel="noopener noreferrer">Field Robot Event</a> is an international competition
+for autonomous robots in real agricultural fields. In <strong>Task 2</strong> the robot drives on its own through
+several curved rows of maize in three minutes, recognises the plants marked as “diseased” and reports
+each one: a public visual signal on the spot, plus a CSV log with the row number and the distance from
+the start of the row, within <strong>10 cm</strong>.</p>
+
+<p>I worked on the perception and localization side of the system: detecting the markers reliably outdoors
+and placing them on a map that does not drift.</p>
+
+<div class="stat-strip">
+  <div>
+<strong>3 min</strong><span>per run, fully autonomous</span>
+</div>
+  <div>
+<strong>40 cm</strong><span>window to signal each plant</span>
+</div>
+  <div>
+<strong>10 cm</strong><span>required mapping precision</span>
+</div>
+  <div>
+<strong>2</strong><span>marker classes: yellow &amp; jute</span>
+</div>
+</div>
+
+<h2 id="the-challenge">The challenge</h2>
+
+<div class="split">
+  <div>
+    <p>Diseased plants are simulated by rectangular markers made of <strong>yellow paper or jute</strong>, placed next to a
+plant. The task breaks down into three problems:</p>
+
+    <ol>
+      <li>
+<strong>Perception</strong> — find the markers under changing outdoor light, partly hidden by leaves.</li>
+      <li>
+<strong>Localization &amp; mapping</strong> — measure where each one is along a <em>curved</em> row, where wheel odometry
+alone drifts on loose soil.</li>
+      <li>
+<strong>Real-time feedback</strong> — light up a signal while the marker is still inside the 40 cm zone.</li>
+    </ol>
+  </div>
+  <figure class="figure">
+  <img src="/assets/images/projects/fre2026/field-layout.png" alt="Layout of the curved maize field used in Task 2" loading="lazy">
+  <figcaption>Task 2 field: curved rows 0.75 m apart, start and finish on the headland.</figcaption>
+</figure>
+</div>
+
+<h2 id="the-robot">The robot</h2>
+
+<div class="split split-reverse">
+  <div>
+    <p><strong>Grasslammer</strong> is AIRLab’s four-wheeled field platform. For this task the relevant sensors were:</p>
+
+    <ul>
+      <li>two <strong>OAK-D</strong> RGB-D cameras on the sides, one per row of plants;</li>
+      <li>two <strong>SICK</strong> single-plane LiDARs, front and rear;</li>
+      <li>a downward-facing <strong>ZED</strong> stereo camera;</li>
+      <li>a custom <strong>LED matrix</strong> on the back for the public signal.</li>
+    </ul>
+  </div>
+  <figure class="figure">
+  <img src="/assets/images/projects/fre2026/grasslammer.jpg" alt="The Grasslammer robot during field tests" loading="lazy">
+  <figcaption>Grasslammer during field tests.</figcaption>
+</figure>
+</div>
+
+<h2 id="perception-from-pixels-to-3d-markers">Perception: from pixels to 3D markers</h2>
+
+<p>A ROS 2 detection node turns every camera frame into validated 3D marker positions.</p>
+
+<figure class="figure figure-wide">
+  <img src="/assets/images/projects/fre2026/detection-node.png" alt="State diagram of the detection node" loading="lazy">
+  <figcaption>Detection node: process the image, validate the mask, publish the detection pose.</figcaption>
+</figure>
+
+<ol class="steps">
+  <li>
+<h3>Calibrate on site</h3>
+<p>Before each run, a region of interest is placed over a real marker (via ROS 2 dynamic parameters) and a service call stores its Hue–Saturation histogram, so the detector matches the light of that moment.</p>
+</li>
+  <li>
+<h3>Histogram back-projection</h3>
+<p>Each frame is converted to HSV, which separates colour from brightness and copes better with shadows. Back-projecting the stored histogram gives a probability map of "marker-coloured" pixels.</p>
+</li>
+  <li>
+<h3>Clean the mask</h3>
+<p>A threshold turns the map into a binary mask; morphological opening removes isolated noise and closing fills the gaps inside the marker.</p>
+</li>
+  <li>
+<h3>Check the shape</h3>
+<p>Contours that are too small are dropped. The rest must pass aspect-ratio and extent tests, which separate rectangular markers from irregular blobs.</p>
+</li>
+  <li>
+<h3>Go to 3D</h3>
+<p>The median of the valid aligned depth pixels and the camera intrinsics project the marker centre into 3D. Only markers inside the 40 cm lateral zone are passed on, in the robot frame.</p>
+</li>
+</ol>
+
+<figure class="figure figure-mid">
+  <img src="/assets/images/projects/fre2026/detection-mask.jpg" alt="Detected jute marker and its binary mask" loading="lazy">
+  <figcaption>A jute marker detected in the image (left) and the cleaned binary mask (right).</figcaption>
+</figure>
+
+<h2 id="tracking-and-mapping">Tracking and mapping</h2>
+
+<p>Raw detections are noisy: the same marker is seen in many frames, and reflections can look like markers.
+Before reaching the map they go through a <strong>multi-object tracker</strong> from the open-source
+<a href="https://github.com/wur-abe/orchards-semantic-slam" target="_blank" rel="noopener noreferrer">orchards-semantic-slam</a> library:</p>
+
+<ul>
+  <li>a cost matrix combines <strong>Euclidean distance</strong> (with a gating threshold) and <strong>semantic class</strong>
+(yellow vs jute), and the <strong>Hungarian algorithm</strong> finds the best assignment;</li>
+  <li>each track is smoothed by a <strong>Kalman filter</strong> and confirmed only after at least two hits.</li>
+</ul>
+
+<p>Confirmed markers then enter a <strong>semantic factor graph</strong> solved with <strong>GTSAM / iSAM2</strong>. Odometry adds a
+new pose only after a minimum displacement, and each observation links a pose to a landmark through
+a range-bearing factor.</p>
+
+<figure class="figure figure-wide">
+  <img src="/assets/images/projects/fre2026/mapping-node.png" alt="State diagram of the localization and mapping node" loading="lazy">
+  <figcaption>Mapping node: one graph per row, optimized and exported to CSV on exit.</figcaption>
+</figure>
+
+<div class="callout">
+  <p><strong>Anchoring both ends of the row.</strong> Only the distance from the row start matters, so a fresh graph is
+started at every row entry, which also discards the drift from the headland turns. A prior fixes the first
+pose at the origin; on exit, a second prior fixes the final position to the known row length. A last
+optimization then spreads the accumulated drift back over the whole trajectory.</p>
+</div>
+
+<figure class="figure figure-wide">
+  <img src="/assets/images/projects/fre2026/factor-graph.png" alt="Optimized factor graph with robot poses and marker positions" loading="lazy">
+  <figcaption>Optimized trajectory (blue) and the estimated positions of yellow and jute markers along one row.</figcaption>
+</figure>
+
+<h2 id="real-time-signal">Real-time signal</h2>
+
+<p>The LED matrix is driven by the tracker’s confirmation logic, not by single frames, so sensor noise does
+not cause false alarms. When a plant is confirmed, an arrow points left or right, towards the camera
+that saw it.</p>
+
+<h2 id="results-and-lessons-learned">Results and lessons learned</h2>
+
+<p>The perception layer was <strong>robust against false positives</strong> in real outdoor conditions. The field showed
+two clear limits, which point to the next steps:</p>
+
+<ul>
+  <li>
+<strong>Calibration was too narrow.</strong> A histogram taken in one light and orientation sometimes missed markers
+seen at other angles. Combining several histograms, or widening the stored H–S range, should help.</li>
+  <li>
+<strong>Mapping missed the 10 cm target.</strong> The Graph SLAM pipeline worked end to end, but needs more
+tuning of the graph noise models in live tests to reach the required precision.</li>
+</ul>
+
+  </div>
+
+  
+  <section class="project-team">
+    <h2>Team</h2>
+    <p>Simone Edmondo Bedini · Enrico Castelli · Mirko Usuelli · Leonardo Gargani</p>
+  </section>
+  
+
+  <hr class="subtle-divider">
+  <nav class="project-navigation">
+    
+      <a href="/projects/so101-ai-arms/" class="nav-prev">← AI-ARMS — Learning Pick-and-Place on the SO-101 Arm</a>
+    
+    
+      <a href="/projects/drone-chase/" class="nav-next">Drone Chase — Finding and Tracking a Flying Target →</a>
+    
+  </nav>
+</article>
+
+    </article>
+  </main>
+
+  <footer>
+    <p class="copy">
+      <small>© Castelli Enrico 2026</small>
+    </p>
+
+    
+    <div class="rounded-social-buttons">
+<a title="" class="social-button linkedin" href="https://www.linkedin.com/in/enrico-castelli-4a3b16323/" itemprop="sameAs" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-linkedin"></i>
+  </a><a title="" class="social-button github" href="https://github.com/chettante" itemprop="sameAs" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-github"></i>
+  </a><a title="" class="social-button instagram" itemprop="sameAs" href="https://www.instagram.com/enricocastellii" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-instagram"></i>
+  </a>
+</div>
+
+    
+
+  </footer>
+
+   
+   <script data-goatcounter="https://chettante.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+   
+
+  <!-- Theme toggle functionality -->
+  <script>
+    (function () {
+      const toggle = document.getElementById('theme-toggle');
+      const icon = document.getElementById('theme-icon');
+
+      function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+      }
+
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        setTheme(savedTheme);
+      } else {
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(systemDark ? 'dark' : 'light');
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          const currentTheme = document.documentElement.getAttribute('data-theme');
+          setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+      }
+    })();
+  </script>
+
+</body>
+
+</html>
